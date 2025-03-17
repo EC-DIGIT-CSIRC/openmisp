@@ -1,0 +1,92 @@
+site_name: OpenMISP Documentation
+site_description: Documentation for the OpenMISP - A Python SDK for MISP
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.tabs.add
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+      primary: "#024eb0"
+      accent: "#0eb7fa" 
+    - scheme: slate 
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode    
+      primary: "#0787de"
+      accent: "#0eb7fa"
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            show_source: true
+            show_category_heading: true
+            show_root_heading: true
+            show_object_full_path: false
+            show_if_no_docstring: false
+            heading_level: 2
+            members_order: source
+            docstring_style: google
+            docstring_section_style: table
+            show_signature_annotations: true
+            group_by_category: true
+            show_submodules: true
+            merge_init_into_class: true
+            show_signature: true
+            show_bases: true
+            filters: ["!^_[^_]"]
+            docstring_options:
+              ignore_init_summary: true
+  - gen-files:
+      scripts:
+        - scripts/generate_ref_nav.py
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quickstart.md
+  - CheatSheet: cheatsheet.md
+  - Reference:
+    - MISP: reference/misp.md
+    - Events: reference/events.md
+    - Attributes: reference/attributes.md
+    - Objects: reference/objects.md
+    - Tags: reference/tags.md
+    - Galaxies: reference/galaxies.md
+    - Clusters: reference/clusters.md
+    - Organizations: reference/organizations.md
+    - Sharing Groups: reference/sharing_groups.md
+  - Examples:
+    - Basic Usage: examples/basic_usage.md
