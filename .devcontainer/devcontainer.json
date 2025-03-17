@@ -1,0 +1,19 @@
+{
+    "name": "OpenMISP",
+    "remoteUser": "vscode",
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+    "workspaceFolder": "/openmisp",
+    "workspaceMount": "source=${localWorkspaceFolder}/,target=/openmisp,type=bind,consistency=cached",
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "ms-python.python",
+          "ms-python.debugpy",
+          "charliermarsh.ruff",
+          "esbenp.prettier-vscode"
+        ]
+      }
+    }
+  }

@@ -1,0 +1,125 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openmisp"
+version = "0.0.1"
+description = "OpenMISP is a Python SDK built on top of pymisp to provide a more intuitive and analyst-friendly interface to interact with MISP."
+authors = [
+    {name = "Tomás Lima", email = "tomas.lima@ext.ec.europa.eu"}
+]
+maintainers = [
+    {name = "Tomás Lima", email = "tomas.lima@ext.ec.europa.eu"}
+]
+requires-python = ">=3.9"
+keywords = [
+  "cybersecurity", "toolkit", "python", "misp", "openmisp"
+]
+classifiers = [
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Security",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+  "urllib3>=1.26.18",
+  "pydantic>=2.6.1",
+  "pymisp>=2.4.187",
+]
+
+[project.optional-dependencies]
+test = [
+  "requests-mock==1.12.1",
+  "python-dotenv==1.0.1",
+  "dotenv>=0.9.9",
+  "coverage>=7.7.0",
+]
+dev = [
+  "ruff>=0.11.0",
+  "mkdocs>=1.6.1",
+  "mkdocs-material>=9.6.4",
+  "mkdocs-redirects>=1.2.2",
+  "mkdocstrings[python]>=0.28.2",
+  "mkdocs-literate-nav>=0.6.1",
+  "mkdocs-gen-files>=0.5.0",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+cache_dir = ".caches/pytest"
+testpaths = [
+    "src/tests",
+]
+addopts = "-v --cov=openmisp.attributes --cov-report=term-missing"
+filterwarnings = [
+    "ignore::urllib3.exceptions.InsecureRequestWarning"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["openmisp"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+select = ["E", "F", "I", "W", "N", "B", "C4", "ARG", "SIM", "ERA", "PL", "RUF"]
+ignore = [
+  "PLR0913",
+]
+exclude = [
+    ".git",
+    ".ruff_cache",
+    "__pycache__",
+    ".venv",
+    "build",
+    "dist",
+    "site",
+]
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+skip-magic-trailing-comma = false
+docstring-code-format = true
+
+[tool.ruff.isort]
+known-first-party = ["openmisp"]
+case-sensitive = true
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/**/*.py" = ["ARG", "PLR2004"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+strict_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+

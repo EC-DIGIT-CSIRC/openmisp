@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python Tests",
+      "type": "debugpy",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "python": "${command:python.interpreterPath}",
+      "cwd": "${workspaceFolder}",
+      "program": "src/tests/run_tests.py",
+      "args": [],
+      "justMyCode": false,
+      "envFile": "${workspaceFolder}/.env",
+    },
+    {
+      "name": "Python Tests: Attribute",
+      "type": "debugpy",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "python": "${command:python.interpreterPath}",
+      "cwd": "${workspaceFolder}",
+      "module": "pytest",
+      "args": ["src/tests/test_attribute_lifecycle.py"],
+      "justMyCode": false,
+      "envFile": "${workspaceFolder}/.env",
+    },
+    {
+      "name": "Example 1",
+      "type": "debugpy",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/src/examples",
+      "program": "example1.py",
+      "args": [],
+      "console": "integratedTerminal"
+    }
+  ]
+}
