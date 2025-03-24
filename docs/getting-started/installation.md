@@ -9,7 +9,7 @@ This guide will help you install and set up the OpenMISP in your environment.
 The recommended way to install OpenMISP is using pip:
 
 ```bash
-pip install openmisp
+pip install git+https://github.com/ec-digit-csirc/openmisp.git@v0.0.1
 ```
 
 ### From Source

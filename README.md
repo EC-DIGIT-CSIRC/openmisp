@@ -5,7 +5,7 @@ OpenMISP is a Python SDK built on top of [pymisp](https://github.com/MISP/PyMISP
 ## Installation
 
 ```bash
-pip install openmisp
+pip install git+https://github.com/ec-digit-csirc/openmisp.git@v0.0.1
 ```
 
 ## Usage
