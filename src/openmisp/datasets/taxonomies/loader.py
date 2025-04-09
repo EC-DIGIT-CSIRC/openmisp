@@ -50,22 +50,26 @@ class Loader:
 
     def _load_categories(self, data: dict) -> dict[str, Category]:
         categories = {}
+
         for item in data.values:
             entries = self._load_entries(
                 item,
                 namespace=data.namespace,
                 category=item.predicate,
-                exclusive=item.exclusive,
                 lookup="entry",
             )
 
-            codename = normalize_key(item.predicate)
+            for predicate in data.predicates:
+                if predicate.value != item.predicate:
+                    continue
 
-            categories[codename] = Category(
-                name=item.predicate,
-                exclusive=item.exclusive,
-                entries=entries,
-            )
+                codename = normalize_key(item.predicate)
+
+                categories[codename] = Category(
+                    name=predicate.value,
+                    exclusive=predicate.exclusive,
+                    entries=entries,
+                )
 
         return categories
 
@@ -80,7 +84,7 @@ class Loader:
             normalize_key(item.value): Entry(
                 namespace=namespace,
                 category=category,
-                **item.dict(),  # Need to convert pydantic model to dict
+                **item.dict(),
             )
             for item in getattr(data, lookup, [])
         }
