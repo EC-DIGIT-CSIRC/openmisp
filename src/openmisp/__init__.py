@@ -23,6 +23,7 @@ from .organizations import OrganizationCriteria
 from .sharing_groups import SharingGroupCriteria
 from .sightings import SightingCriteria, SightingType
 from .tags import TagCriteria
+from . import datasets
 
 __all__ = [
     "MISP",
@@ -53,5 +54,6 @@ __all__ = [
     "SightingCriteria",
     "SightingType",
     "TagCriteria",
+    "datasets",
     "ThreatLevel",
 ]
